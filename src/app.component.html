@@ -1,0 +1,145 @@
+<div class="p-4">
+  <h3>Reactive form example</h3>
+  <!--bengin:: Add User Button -->
+  <button type="button" class="btn btn-primary"*ngIf="showButton">
+      Add User
+  </button>
+  <!--end:: Add User Button -->
+  <div class="card-body">
+      <!--bengin:: Add User Form -->
+      <form [formGroup]="userForm">
+          <!--bengin::  First Name -->
+          <div class="pt-2">
+              <label class="me-3" >First Name</label>
+              <input type="text" formControlName="firstName" />
+              <div *ngIf="submitted && userValidation.firstName.errors?.['required']">
+                  First Name is required
+              </div>
+          </div>
+          <!--end::  First Name -->
+          <!--bengin::  Last Name -->
+          <div class="form-group pt-2">
+              <label class="me-3">Last Name</label>
+              <input type="text" formControlName="lastName" />
+              <div *ngIf="submitted && userValidation.lastName.errors?.['required']">
+                  Last Name is required
+              </div>
+          </div>
+          <!--end::  Last Name -->
+          <!--bengin::  Phone -->
+          <div class="form-group pt-2">
+              <label class="me-3">Email</label>
+              <input type="text" formControlName="email" />
+              <div *ngIf="submitted && userValidation.email.errors?.['required']">
+                  Email is required
+              </div>
+          </div>
+          <!--end::  Phone -->
+          <!--bengin::  Phone -->
+          <div class="form-group pt-2">
+              <label class="me-3">Phone</label>
+              <input type="text" formControlName="phone" />
+              <div *ngIf="submitted && userValidation.phone.errors?.['required']">
+                  Phone is required
+              </div>
+          </div>
+          <!--end::  Phone -->
+          <!--bengin::  Company -->
+          <div class="form-group pt-2">
+              <label class="me-3">Company</label>
+              <input type="text" formControlName="company" />
+              <div *ngIf="submitted && userValidation.company.errors?.['required']">
+                  Company is required
+              </div>
+          </div>
+          <!--end::  Company -->
+          <!--bengin::  Gender -->
+          <div class="form-group pt-2">
+              <label class="me-3">Gender</label>
+              <div>
+                  <input type="radio" value="male" name="gender" formControlName="gender" />
+                  <label>Male</label>
+              </div>
+              <div>
+                  <input type="radio" value="female" name="gender" formControlName="gender" />
+                  <label>Female</label>
+              </div>
+              <div *ngIf="submitted && userValidation.gender.errors?.['required']">
+                  Gender is required
+              </div>
+          </div>
+          <!--end::  Gender -->
+          <!--bengin::  DOB -->
+          <div class="form-group pt-2">
+              <label class="me-3">DOB</label>
+              <input type="date" formControlName="dob" />
+              <div *ngIf="submitted && userValidation.dob.errors?.['required']">
+                  DOB is required
+              </div>
+          </div>
+          <!--end::  DOB -->
+          <!--bengin::  Password -->
+          <div class="form-group pt-2">
+            <label class="me-3">Password</label>
+            <input type="password" formControlName="password" />
+            <div *ngIf="submitted && userValidation.password.errors?.['required']">
+                Password is required
+            </div>
+        </div>
+          <!--end::  Password -->
+          <!--bengin:: Confirm Password -->
+          <div class="pt-2">
+            <label class="me-3">Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" />
+            <div *ngIf="submitted && userValidation.confirmPassword.errors?.['required']">
+                Confirm Password is required
+            </div>
+        </div>
+          <!--end:: Confirm Password -->
+          <!--bengin:: buttons -->
+          <div class="pt-3">
+              <button type="button" class="btn btn-success me-3" *ngIf="showButton"(click)="onRegister()" [disabled]="addForm">
+                 Register
+              </button>
+              <button type="button" class="btn btn-success me-3" *ngIf="showUpdate"(click)="onUpdate()" [disabled]="addForm">
+                 Update
+              </button>
+              <button type="button" class="btn btn-danger" (click)="onCancle()">
+                  Cancle
+              </button>
+          </div>
+          <!--end:: buttons -->
+      </form>
+      <!--end:: Add User Form -->
+  </div>
+  <!--begin:: User Details Table-->
+  <table>
+      <thead>
+      <tr>
+          <th >First Name</th>
+          <th >Last Name</th>
+          <th >Email</th>
+          <th >Phone</th>
+          <th >Company</th>
+          <th >Gender</th>
+          <th >DOB</th>
+          <th >Edit</th>
+          <th >Delete</th>
+      </tr>
+      </thead>
+  <tbody>
+      <tr *ngFor="let user of users; let i = index">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.company }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.dob }}</td>
+          <td class="buton-sm" (click)="onEdit(user, i)">Edit</td>
+          <td class="button-cm" (click)="onDelete(i)">Delete</td>
+      </tr>
+      </tbody>
+  </table>
+  <!--end:: User Details Table-->
+</div>
